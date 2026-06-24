@@ -17,6 +17,7 @@
     <div class="nav-dot" data-target="skills"  title="技能"><span></span></div>
     <div class="nav-dot" data-target="exp"     title="经历"><span></span></div>
     <div class="nav-dot" data-target="edu"     title="教育"><span></span></div>
+    <div class="nav-dot" data-target="ai"      title="AI认知"><span></span></div>
     <div class="nav-dot" data-target="contact" title="联系"><span></span></div>
 </nav>
 
@@ -312,11 +313,71 @@
 </section>
 
 <!-- ============================================================
+ AI 认知
+ ============================================================ -->
+<section class="section-ai" id="ai">
+    <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>AI 时代的能力认知</h2>
+        <p class="section-sub">AI Era Competencies</p>
+    </div>
+
+    <div class="ai-grid">
+        <!-- 左侧：AI 工具生态认知 -->
+        <div class="ai-card">
+            <h3 class="ai-card-title">&#129504; AI 工具生态认知</h3>
+            <div class="ai-item">
+                <strong>大语言模型（LLM）</strong>
+                <p>Claude / ChatGPT / DeepSeek — 深度理解文本生成、推理、代码辅助、多轮对话机制，能根据任务需求选择合适模型</p>
+            </div>
+            <div class="ai-item">
+                <strong>AI 编程助手</strong>
+                <p>Claude Code / Cursor / GitHub Copilot — 熟练运用 AI 辅助编写 Python 脚本、网页前后端、自动化工具，理解 prompt 工程基本原理</p>
+            </div>
+            <div class="ai-item">
+                <strong>AI + 办公自动化</strong>
+                <p>利用 AI 批量处理 Excel 数据、生成 PPT 报告、撰写标准化文档，将重复性工作自动化，提升团队产出效率</p>
+            </div>
+            <div class="ai-item">
+                <strong>RPA + AI 融合</strong>
+                <p>理解影刀等 RPA 工具与 AI 的协同模式：RPA 负责流程执行，AI 负责智能决策，二者结合实现端到端自动化</p>
+            </div>
+            <div class="ai-item">
+                <strong>多模态 AI 感知</strong>
+                <p>了解 AI 图像生成（Midjourney）、语音识别、视频理解等多模态能力边界，能判断哪些场景适合引入 AI</p>
+            </div>
+        </div>
+
+        <!-- 右侧上：实战案例 -->
+        <div class="ai-card">
+            <h3 class="ai-card-title">&#128295; 个人实战案例</h3>
+            <ul class="ai-case-list">
+                <li>用 Claude Code 独立开发 1688 商品批量抓取工具<br><small>（Python + Playwright + Excel 自动化输出）</small></li>
+                <li>用 AI 辅助搭建个人简历响应式网站<br><small>（Flask + HTML/CSS/JS + 深色主题动画）</small></li>
+                <li>将网页简历一键转换为专业 PPT 演示文稿<br><small>（python-pptx 自动化排版输出）</small></li>
+            </ul>
+        </div>
+
+        <!-- 右侧下：认知态度 -->
+        <div class="ai-card">
+            <h3 class="ai-card-title">&#128161; 我对 AI 的认知态度</h3>
+            <ul class="ai-attitude-list">
+                <li>AI 是效率放大器，而非替代品 — 核心价值仍在于人的专业判断与创造力</li>
+                <li>会用 AI 本身即是竞争力 — 同等条件下，能用 AI 提效的人产出差距可达 3-5 倍</li>
+                <li>Prompt 即编程 — 精准描述需求、拆解复杂任务、迭代优化输出，是 AI 时代的基础素养</li>
+                <li>保持技术敏感度 — 持续跟进大模型迭代，关注 AI 在机械设计、电商运营等垂直领域的落地应用</li>
+                <li>AI 幻觉需警惕 — 对 AI 输出始终保持批判性验证，关键决策以事实和数据为准</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
  联系页脚
  ============================================================ -->
 <section class="section-contact" id="contact">
     <div class="section-header">
-        <span class="section-number">05</span>
+        <span class="section-number">06</span>
         <h2>联系方式</h2>
         <p class="section-sub">Get In Touch</p>
     </div>
@@ -577,7 +638,8 @@
             case '2': document.getElementById('skills') && document.getElementById('skills').scrollIntoView({behavior:'smooth'}); break;
             case '3': document.getElementById('exp')    && document.getElementById('exp').scrollIntoView({behavior:'smooth'}); break;
             case '4': document.getElementById('edu')    && document.getElementById('edu').scrollIntoView({behavior:'smooth'}); break;
-            case '5': document.getElementById('contact')&& document.getElementById('contact').scrollIntoView({behavior:'smooth'}); break;
+            case '5': document.getElementById('ai')     && document.getElementById('ai').scrollIntoView({behavior:'smooth'}); break;
+            case '6': document.getElementById('contact')&& document.getElementById('contact').scrollIntoView({behavior:'smooth'}); break;
         }
     });
 

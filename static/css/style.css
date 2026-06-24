@@ -975,6 +975,118 @@ body {
     line-height: 1.8;
 }
 
+/* ============ AI 认知 ============ */
+.section-ai {
+    padding: var(--section-pad);
+    max-width: 1050px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.ai-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    transition: all var(--transition);
+}
+
+.ai-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 6px 28px var(--gold-glow);
+}
+
+.ai-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
+.ai-item {
+    margin-bottom: 14px;
+    padding-left: 4px;
+}
+
+.ai-item:last-child { margin-bottom: 0; }
+
+.ai-item strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text-strong);
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+}
+
+.ai-item p {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.ai-case-list,
+.ai-attitude-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ai-case-list li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.ai-case-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+.ai-case-list li small {
+    color: var(--text-dim);
+    font-size: 11px;
+}
+
+.ai-attitude-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.ai-attitude-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 10px;
+}
+
+.ai-attitude-list li:last-child { margin-bottom: 0; }
+
 /* ============ 联系方式 ============ */
 .section-contact {
     padding: var(--section-pad);
@@ -1069,6 +1181,8 @@ body {
 
     .edu-card-main { flex-direction: column; gap: 24px; }
     .edu-card-left { min-width: auto; }
+
+    .ai-grid { grid-template-columns: 1fr; }
 
     .side-nav { right: 10px; gap: 14px; }
     .nav-dot { width: 8px; height: 8px; }
