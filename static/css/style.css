@@ -975,6 +975,163 @@ body {
     line-height: 1.8;
 }
 
+/* ============ 1688 电商运营 ============ */
+.section-ecommerce {
+    padding: var(--section-pad);
+    max-width: 1050px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ecom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.ecom-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    transition: all var(--transition);
+}
+
+.ecom-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 6px 28px var(--gold-glow);
+}
+
+.ecom-card--main {
+    grid-row: span 2;
+}
+
+.ecom-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* 技能条 */
+.ecom-bar-item {
+    margin-bottom: 20px;
+}
+
+.ecom-bar-item:last-child { margin-bottom: 0; }
+
+.ecom-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.ecom-bar-pct {
+    color: var(--gold);
+    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 14px;
+}
+
+.ecom-bar-track {
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ecom-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 3px;
+    transition: width 1.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 方法论列表 */
+.ecom-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ecom-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.ecom-list li:last-child { margin-bottom: 0; }
+
+.ecom-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+.ecom-list li strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* 数据统计 */
+.ecom-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+}
+
+.ecom-stat {
+    text-align: center;
+    flex: 1;
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 12px;
+    transition: all var(--transition);
+}
+
+.ecom-stat:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.ecom-stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+}
+
+.ecom-stat-plus {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.ecom-stat-label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
 /* ============ AI 认知 ============ */
 .section-ai {
     padding: var(--section-pad);
@@ -1183,6 +1340,8 @@ body {
     .edu-card-left { min-width: auto; }
 
     .ai-grid { grid-template-columns: 1fr; }
+    .ecom-grid { grid-template-columns: 1fr; }
+    .ecom-card--main { grid-row: auto; }
 
     .side-nav { right: 10px; gap: 14px; }
     .nav-dot { width: 8px; height: 8px; }
