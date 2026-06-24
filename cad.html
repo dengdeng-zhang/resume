@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD 蓝图 — 线上图纸展示</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            padding: 16px 24px;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .header h1 {
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #58a6ff;
+        }
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .toolbar button {
+            padding: 7px 16px;
+            border: 1px solid #30363d;
+            background: #21262d;
+            color: #c9d1d9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .toolbar button:hover { border-color: #58a6ff; color: #58a6ff; }
+        .toolbar button.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+        .toolbar label { font-size: 13px; color: #8b949e; display: flex; align-items: center; gap: 6px; }
+        .toolbar input[type=range] { width: 100px; accent-color: #58a6ff; }
+        .canvas-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+            overflow: auto;
+        }
+        canvas {
+            max-width: 95vw;
+            max-height: 78vh;
+            box-shadow: 0 0 40px rgba(88,166,255,0.12);
+            border-radius: 4px;
+        }
+        .info-bar {
+            width: 100%;
+            padding: 10px 24px;
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #8b949e;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .info-bar span { font-family: monospace; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>&#9874; CAD 蓝图视图</h1>
+    <div class="toolbar">
+        <button id="btnOriginal" class="active">原始图</button>
+        <button id="btnEdge">边缘检测</button>
+        <button id="btnBlueprint">蓝图风格</button>
+        <button id="btnSketch">手绘线稿</button>
+        <button id="btnInvert">反色工程图</button>
+        <label>阈值 <input type="range" id="threshold" min="10" max="200" value="80"></label>
+        <button id="btnDownload">&#128190; 导出PNG</button>
+    </div>
+</div>
+
+<div class="canvas-wrap">
+    <canvas id="mainCanvas"></canvas>
+</div>
+
+<div class="info-bar">
+    <span>原图: cad_source.jpg</span>
+    <span>模式: <em id="modeLabel">原始图</em></span>
+    <span>分辨率: <em id="resLabel">—</em></span>
+    <span>快捷键: 1-5 切换模式 | +/- 调阈值 | S 导出</span>
+</div>
+
+<script>
+(function(){
+    var canvas = document.getElementById('mainCanvas');
+    var ctx = canvas.getContext('2d');
+    var img = new Image();
+    var currentMode = 'original';
+    var threshold = 80;
+
+    // ==================== 加载原图 ====================
+    img.src = "static/cad_source.jpg";
+    img.onload = function(){
+        // 适配显示尺寸（最大 1200 宽）
+        var scale = 1;
+        if (img.width > 1200) { scale = 1200 / img.width; }
+        canvas.width  = Math.floor(img.width * scale);
+        canvas.height = Math.floor(img.height * scale);
+        document.getElementById('resLabel').textContent =
+            img.width + ' x ' + img.height;
+        render();
+    };
+
+    // ==================== 渲染主函数 ====================
+    function render(){
+        // 缩放绘制原图
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        if (currentMode === 'original') return;
+
+        // 获取像素数据
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        var w = canvas.width, h = canvas.height;
+
+        // 灰度化
+        var gray = new Uint8Array(w * h);
+        for (var i = 0; i < data.length; i += 4) {
+            var r = data[i], g = data[i+1], b = data[i+2];
+            gray[i/4] = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+        }
+
+        // Sobel 边缘检测
+        var edges = new Uint8Array(w * h);
+        var maxEdge = 0;
+        for (var y = 1; y < h - 1; y++) {
+            for (var x = 1; x < w - 1; x++) {
+                var idx = y * w + x;
+                var gx = -1 * gray[idx - w - 1] + 1 * gray[idx - w + 1]
+                       + -2 * gray[idx - 1]     + 2 * gray[idx + 1]
+                       + -1 * gray[idx + w - 1] + 1 * gray[idx + w + 1];
+                var gy = -1 * gray[idx - w - 1] + -2 * gray[idx - w]
+                       + -1 * gray[idx - w + 1] +  1 * gray[idx + w - 1]
+                       +  2 * gray[idx + w]     +  1 * gray[idx + w + 1];
+                var mag = Math.sqrt(gx * gx + gy * gy);
+                edges[idx] = Math.min(255, mag);
+                if (mag > maxEdge) maxEdge = mag;
+            }
+        }
+
+        // 归一化
+        var t = threshold / 255;
+        for (var i = 0; i < edges.length; i++) {
+            edges[i] = (edges[i] / maxEdge) > t ? 255 : 0;
+        }
+
+        // 按模式渲染
+        for (var i = 0; i < data.length; i += 4) {
+            var idx = i / 4;
+            var e = edges[idx];
+            var g = gray[idx];
+
+            switch (currentMode) {
+                case 'edge':
+                    // 白底黑线
+                    data[i] = data[i+1] = data[i+2] = 255 - e;
+                    break;
+
+                case 'blueprint':
+                    // 蓝图：深蓝底 + 白蓝线
+                    data[i]     = e > 0 ? 180 : 15;   // R
+                    data[i+1]   = e > 0 ? 210 : 30;   // G
+                    data[i+2]   = e > 0 ? 255 : 70;   // B
+                    break;
+
+                case 'sketch':
+                    // 手绘线稿：米白底 + 深灰线 + 微噪
+                    var noise = (Math.random() - 0.5) * 15;
+                    if (e > 0) {
+                        data[i] = data[i+1] = data[i+2] = Math.max(0, Math.min(255, 40 + noise));
+                    } else {
+                        var base = Math.max(0, Math.min(255, 245 + noise));
+                        data[i] = data[i+1] = data[i+2] = base;
+                    }
+                    break;
+
+                case 'invert':
+                    // 反色工程图：黑底 + 亮线 + 半透明原图
+                    var bg = Math.max(20, Math.min(200, g * 0.3));
+                    if (e > 0) {
+                        data[i] = data[i+1] = data[i+2] = 220;
+                    } else {
+                        data[i] = data[i+1] = data[i+2] = bg;
+                    }
+                    break;
+            }
+            data[i+3] = 255;
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+
+        // 蓝图模式叠加网格
+        if (currentMode === 'blueprint') {
+            drawGrid();
+        }
+    }
+
+    // 绘制 CAD 网格
+    function drawGrid(){
+        var spacing = 40;
+        ctx.strokeStyle = 'rgba(100,160,220,0.12)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        for (var x = spacing; x < canvas.width; x += spacing) {
+            ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height);
+        }
+        for (var y = spacing; y < canvas.height; y += spacing) {
+            ctx.moveTo(0, y); ctx.lineTo(canvas.width, y);
+        }
+        ctx.stroke();
+    }
+
+    // ==================== 按钮事件 ====================
+    var modes = ['original', 'edge', 'blueprint', 'sketch', 'invert'];
+    var buttons = {
+        original:  document.getElementById('btnOriginal'),
+        edge:      document.getElementById('btnEdge'),
+        blueprint: document.getElementById('btnBlueprint'),
+        sketch:    document.getElementById('btnSketch'),
+        invert:    document.getElementById('btnInvert'),
+    };
+    var labels = {
+        original: '原始图', edge: '边缘检测', blueprint: '蓝图风格',
+        sketch: '手绘线稿', invert: '反色工程图',
+    };
+
+    function setMode(mode){
+        currentMode = mode;
+        Object.keys(buttons).forEach(function(k){
+            buttons[k].classList.remove('active');
+        });
+        buttons[mode].classList.add('active');
+        document.getElementById('modeLabel').textContent = labels[mode];
+        render();
+    }
+
+    buttons.original.addEventListener('click',  function(){ setMode('original'); });
+    buttons.edge.addEventListener('click',      function(){ setMode('edge'); });
+    buttons.blueprint.addEventListener('click', function(){ setMode('blueprint'); });
+    buttons.sketch.addEventListener('click',    function(){ setMode('sketch'); });
+    buttons.invert.addEventListener('click',    function(){ setMode('invert'); });
+
+    // 阈值滑块
+    document.getElementById('threshold').addEventListener('input', function(){
+        threshold = parseInt(this.value);
+        if (currentMode !== 'original') render();
+    });
+
+    // 导出
+    document.getElementById('btnDownload').addEventListener('click', function(){
+        var link = document.createElement('a');
+        link.download = 'cad_' + currentMode + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+
+    // ==================== 键盘快捷键 ====================
+    document.addEventListener('keydown', function(e){
+        switch(e.key){
+            case '1': setMode('original');  break;
+            case '2': setMode('edge');      break;
+            case '3': setMode('blueprint'); break;
+            case '4': setMode('sketch');    break;
+            case '5': setMode('invert');    break;
+            case '=': case '+':
+                threshold = Math.min(200, threshold + 10);
+                document.getElementById('threshold').value = threshold;
+                if (currentMode !== 'original') render();
+                break;
+            case '-':
+                threshold = Math.max(10, threshold - 10);
+                document.getElementById('threshold').value = threshold;
+                if (currentMode !== 'original') render();
+                break;
+            case 's': case 'S':
+                if (!e.ctrlKey && !e.metaKey) {
+                    document.getElementById('btnDownload').click();
+                }
+                break;
+        }
+    });
+
+    console.log('%c CAD蓝图视图已就绪 %c| 1-5切换模式 | +/-调阈值 | S导出',
+        'color:#58a6ff;font-size:14px;', 'color:#8b949e;');
+})();
+</script>
+
+</body>
+</html>

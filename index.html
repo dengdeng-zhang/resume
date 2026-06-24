@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张建森 — 个人简历</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- ============================================================
+ 侧边导航（固定左侧）
+ ============================================================ -->
+<nav class="side-nav" id="sideNav">
+    <div class="nav-dot" data-target="hero"    title="首页"><span></span></div>
+    <div class="nav-dot" data-target="about"   title="关于我"><span></span></div>
+    <div class="nav-dot" data-target="skills"  title="技能"><span></span></div>
+    <div class="nav-dot" data-target="exp"     title="经历"><span></span></div>
+    <div class="nav-dot" data-target="edu"     title="教育"><span></span></div>
+    <div class="nav-dot" data-target="contact" title="联系"><span></span></div>
+</nav>
+
+<!-- ============================================================
+ 主题切换 & 顶部工具
+ ============================================================ -->
+<button class="theme-switch" id="themeSwitch" title="切换主题">&#9680;</button>
+<div class="scroll-indicator" id="scrollIndicator"></div>
+
+<!-- ============================================================
+ HERO 区 —— 全屏首屏
+ ============================================================ -->
+<section class="hero" id="hero">
+    <div class="hero-bg-orb"></div>
+    <div class="hero-bg-orb orb2"></div>
+
+    <div class="hero-inner">
+        <!-- 左侧文字 -->
+        <div class="hero-text">
+            <div class="hero-greeting">
+                <span class="greeting-line"></span>
+                <span class="greeting-txt">HELLO, I'M</span>
+            </div>
+            <h1 class="hero-name">
+                <span class="name-char">张</span>
+                <span class="name-char">建</span>
+                <span class="name-char">森</span>
+            </h1>
+            <div class="hero-titles">
+                <span class="hero-role active">CAD 机械制图</span>
+                <span class="hero-role">汽车服务顾问</span>
+                <span class="hero-role">1688 电商运营</span>
+            </div>
+            <p class="hero-bio">
+                2004年 / 福建厦门 / 全日制专科<br>
+                厦门南洋职业学院 · 汽车制造与试验技术<br>
+                <small>技术 + 商务 双修复合背景</small>
+            </p>
+            <div class="hero-actions">
+                <a href="#exp" class="btn-primary">查看经历</a>
+                <a href="#contact" class="btn-outline">联系我</a>
+            </div>
+        </div>
+
+        <!-- 右侧照片 -->
+        <div class="hero-visual">
+            <div class="photo-ring">
+                <svg class="ring-svg" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"   stop-color="#c9a96e"/>
+                            <stop offset="100%" stop-color="#8b7a5a"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90"
+                        fill="none" stroke="url(#ringGrad)" stroke-width="1.5"
+                        stroke-dasharray="12 4" opacity="0.5"/>
+                    <circle cx="100" cy="100" r="78"
+                        fill="none" stroke="url(#ringGrad)" stroke-width="0.8"
+                        stroke-dasharray="4 6" opacity="0.35"/>
+                </svg>
+                <div class="photo-mask">
+                    <img src="static/avatar_20260618134340.jpg" alt="张建森">
+                </div>
+            </div>
+            <!-- 浮动徽章 -->
+            <div class="badge badge-1">&#9733; 专科排名前 10%</div>
+            <div class="badge badge-2">&#9733; 3 年运营实操</div>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+        <span>向下滚动</span>
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+ 关于我 —— 自我评价
+ ============================================================ -->
+<section class="section-about" id="about">
+    <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>关于我</h2>
+        <p class="section-sub">Self-Evaluation</p>
+    </div>
+
+    <div class="about-grid">
+        <div class="about-stat-card">
+            <div class="stat-icon">&#127891;</div>
+            <div class="stat-value"><span class="counter" data-target="10">0</span>%</div>
+            <div class="stat-label">专业成绩 Top</div>
+        </div>
+        <div class="about-stat-card">
+            <div class="stat-icon">&#128188;</div>
+            <div class="stat-value"><span class="counter" data-target="3">0</span>+</div>
+            <div class="stat-label">年运营工作经验</div>
+        </div>
+        <div class="about-stat-card">
+            <div class="stat-icon">&#127942;</div>
+            <div class="stat-value"><span class="counter" data-target="3">0</span></div>
+            <div class="stat-label">适配岗位方向</div>
+        </div>
+    </div>
+
+    <div class="about-text-block">
+        <blockquote class="about-quote">
+            <p>性格沉稳开朗，善于沟通协作，待人真诚耐心；抗压能力强，能适应高强度工作节奏，始终保持高度责任心与团队协作意识。在校成绩稳居班级前10%，兼具机械制图专业功底与1688电商运营实战经验，是技术与商务双修的复合型人才。</p>
+        </blockquote>
+        <div class="about-columns">
+            <p><strong>技术底子</strong> — 系统掌握汽车构造、新能源电控、CAD机械辅助设计等核心课程，自主拓展机械识图与三维视图分析能力，可独立完成二维机械图纸绘制与基础设备结构分析。熟练操作Office全系办公套件，具备标准化文档输出能力。</p>
+            <p><strong>实战能力</strong> — 近两年深耕1688电商平台商家运营，擅长从0到1的店铺起步规划、运营诊断与标准化培训课件输出；在校期间兼任社团会长与招生专员，独立完成商务洽谈、大型活动统筹及信息台账全流程管理，适应机械制图、汽车售后、电商运营三类岗位，入职即可快速上手。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+ 技能 —— 环形图
+ ============================================================ -->
+<section class="section-skills" id="skills">
+    <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>专业能力</h2>
+        <p class="section-sub">Core Competencies</p>
+    </div>
+
+    <div class="skills-ring-group">
+        <div class="ring-card">
+            <svg class="ring-chart" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fill" data-pct="85"/>
+            </svg>
+            <div class="ring-label">
+                <span class="ring-pct">85%</span>
+                <span class="ring-name">CAD 机械制图</span>
+            </div>
+        </div>
+        <div class="ring-card">
+            <svg class="ring-chart" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fill" data-pct="80"/>
+            </svg>
+            <div class="ring-label">
+                <span class="ring-pct">80%</span>
+                <span class="ring-name">汽车构造分析</span>
+            </div>
+        </div>
+        <div class="ring-card">
+            <svg class="ring-chart" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fill" data-pct="88"/>
+            </svg>
+            <div class="ring-label">
+                <span class="ring-pct">88%</span>
+                <span class="ring-name">1688 电商运营</span>
+            </div>
+        </div>
+        <div class="ring-card">
+            <svg class="ring-chart" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fill" data-pct="82"/>
+            </svg>
+            <div class="ring-label">
+                <span class="ring-pct">82%</span>
+                <span class="ring-name">Office 办公套件</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 基础信息卡片 -->
+    <div class="info-strip">
+        <div class="info-strip-item"><span>姓名</span><strong>张建森</strong></div>
+        <div class="info-strip-item"><span>出生年月</span><strong>2004 年 01 月</strong></div>
+        <div class="info-strip-item"><span>性别</span><strong>男</strong></div>
+        <div class="info-strip-item"><span>政治面貌</span><strong>群众</strong></div>
+        <div class="info-strip-item"><span>籍贯</span><strong>福建</strong></div>
+        <div class="info-strip-item"><span>学历</span><strong>全日制专科</strong></div>
+    </div>
+</section>
+
+<!-- ============================================================
+ 实践经历 —— 交互时间轴
+ ============================================================ -->
+<section class="section-exp" id="exp">
+    <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>实践经历</h2>
+        <p class="section-sub">Professional Experience</p>
+    </div>
+
+    <div class="timeline">
+
+        <!-- 经历 3 —— 最近（默认展开） -->
+        <div class="tl-item active">
+            <div class="tl-marker">
+                <div class="tl-diamond"></div>
+                <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+                <div class="tl-period">2024.03 — 2026.02</div>
+                <h3>众事达(福建)信息技术股份有限公司</h3>
+                <span class="tl-role">商家运营培训专员</span>
+                <ul>
+                    <li><strong>商家入驻赋能：</strong>主导1688新商家入驻全流程，从0到1定制店铺运营规划方案，独立撰写标准化合作文档，累计服务商家超50家，客户满意度持续领先团队；</li>
+                    <li><strong>线下诊断服务：</strong>定期上门为在营商家进行店铺健康度诊断，一对一解决流量获取、商品上架、交易转化等全链路运营难题，输出可落地的优化建议报告；</li>
+                    <li><strong>培训体系搭建：</strong>从0搭建商家运营培训课程体系，独立开发标准化课件与配套教材，常态化组织线上线下培训教学，累计授课超百场。</li>
+                </ul>
+                <div class="tl-tags">
+                    <span>1688 运营</span><span>商家培训</span><span>店铺诊断</span><span>课程开发</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 经历 2 -->
+        <div class="tl-item">
+            <div class="tl-marker">
+                <div class="tl-diamond"></div>
+                <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+                <div class="tl-period">2021.09 — 2022.06</div>
+                <h3>梦飞专升本</h3>
+                <span class="tl-role">兼职招生专员</span>
+                <ul>
+                    <li><strong>招生转化：</strong>负责校内专升本项目的全方位宣传推广，独立完成学员咨询接待与需求分析，精细化管理报名信息登记与学员档案入库，个人年度招生转化率位居团队前列；</li>
+                    <li><strong>行政标准化：</strong>运用Office套件建立标准化工作流——奖状排版打印、学员资料分类归档、宿舍管理制度成文存档，推动团队行政效率显著提升；</li>
+                    <li><strong>学员运营：</strong>策划并落地校内课余学习活动，有效提升学员粘性与续报率，精熟Excel数据统计与Word文档处理等办公自动化工具。</li>
+                </ul>
+                <div class="tl-tags">
+                    <span>招生转化</span><span>Office 专家</span><span>档案管理</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 经历 1 -->
+        <div class="tl-item">
+            <div class="tl-marker">
+                <div class="tl-diamond"></div>
+            </div>
+            <div class="tl-card">
+                <div class="tl-period">2021.09 — 2023.06</div>
+                <h3>白鹭青汉服协会</h3>
+                <span class="tl-role">会长</span>
+                <ul>
+                    <li><strong>商务拓展：</strong>独立对接校外商家赞助合作，全程主导商务洽谈、合作方案制定与权益落地执行，保障社团年度活动经费的稳定供给；</li>
+                    <li><strong>大型活动操盘：</strong>全权策划并执行校园汉服走秀活动，统筹百人级人员调度、节目编排、舞台灯光、演讲稿撰写等全环节，活动到场人数超出预期；</li>
+                    <li><strong>文化传播运营：</strong>定期策划汉文化主题科普分享会，负责宣传内容输出与校内文化推广，有效扩大社团校园影响力。</li>
+                </ul>
+                <div class="tl-tags">
+                    <span>商务谈判</span><span>活动统筹</span><span>团队管理</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================
+ 教育背景
+ ============================================================ -->
+<section class="section-edu" id="edu">
+    <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>教育背景</h2>
+        <p class="section-sub">Education</p>
+    </div>
+
+    <div class="edu-card-main">
+        <div class="edu-card-left">
+            <div class="edu-icon-block">&#127891;</div>
+            <div class="edu-school-info">
+                <h3>厦门南洋职业学院</h3>
+                <span class="edu-major">汽车制造与试验技术</span>
+                <span class="edu-years">2022.09 — 2025.06</span>
+            </div>
+        </div>
+        <div class="edu-card-right">
+            <div class="edu-detail-block">
+                <h4>主修核心课程</h4>
+                <div class="course-cloud">
+                    <span>汽车构造</span><span>新能源汽车技术</span><span>汽车电子控制</span>
+                    <span>汽车事故理赔</span><span>CAD机械辅助设计</span>
+                </div>
+            </div>
+            <div class="edu-detail-block">
+                <h4>学业成果</h4>
+                <p>专业综合成绩稳居班级前10%，熟练掌握CAD二维机械图纸绘制，具备零部件三维识图分析能力，将课堂所学无缝应用于实际工作场景</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+ 联系页脚
+ ============================================================ -->
+<section class="section-contact" id="contact">
+    <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>联系方式</h2>
+        <p class="section-sub">Get In Touch</p>
+    </div>
+
+    <div class="contact-grid">
+        <a href="tel:18876531605" class="contact-card">
+            <span class="contact-card-icon">&#128222;</span>
+            <span class="contact-card-label">电话</span>
+            <span class="contact-card-value">188 7653 1605</span>
+        </a>
+        <a href="mailto:3536194018@qq.com" class="contact-card">
+            <span class="contact-card-icon">&#9993;</span>
+            <span class="contact-card-label">邮箱</span>
+            <span class="contact-card-value">3536194018@qq.com</span>
+        </a>
+        <div class="contact-card">
+            <span class="contact-card-icon">&#128205;</span>
+            <span class="contact-card-label">所在地</span>
+            <span class="contact-card-value">福建省厦门市</span>
+        </div>
+    </div>
+
+    <footer class="global-footer">
+        <p>&copy; 2026 张建森 · 感谢您花时间浏览我的简历，期待与您的交流</p>
+    </footer>
+</section>
+
+<!-- ============================================================
+ 动画雪花/粒子效果层
+ ============================================================ -->
+<canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+<!-- ============================================================
+ JavaScript
+ ============================================================ -->
+<script>
+(function(){
+    var body = document.body;
+    var sideNav = document.getElementById('sideNav');
+    var navDots = sideNav.querySelectorAll('.nav-dot');
+    var scrollInd = document.getElementById('scrollIndicator');
+    var themeSwitch = document.getElementById('themeSwitch');
+    var canvas = document.getElementById('bgCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // ============ 暗色/亮色主题 ============
+    if (localStorage.getItem('resumeTheme') === 'light') {
+        body.classList.add('light-theme');
+    }
+    themeSwitch.addEventListener('click', function(){
+        body.classList.toggle('light-theme');
+        localStorage.setItem('resumeTheme',
+            body.classList.contains('light-theme') ? 'light' : 'dark');
+        this.classList.add('spin-once');
+        setTimeout(function(){ themeSwitch.classList.remove('spin-once'); }, 600);
+    });
+
+    // ============ 导航高亮 ============
+    var sections = [];
+    navDots.forEach(function(dot){
+        var id = dot.getAttribute('data-target');
+        var el = document.getElementById(id);
+        if (el) sections.push({id: id, el: el, dot: dot});
+    });
+    function updateNav(){
+        var scrollY = window.scrollY + window.innerHeight / 3;
+        var active = null;
+        sections.forEach(function(s){
+            if (s.el.offsetTop <= scrollY) active = s;
+        });
+        if (active) {
+            navDots.forEach(function(d){ d.classList.remove('active'); });
+            active.dot.classList.add('active');
+        }
+    }
+
+    // ============ 滚动进度条 ============
+    function updateProgress(){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+        scrollInd.style.width = pct + '%';
+    }
+
+    // ============ 数字滚动动画 ============
+    var countersAnimated = false;
+    function animateCounters(){
+        if (countersAnimated) return;
+        var about = document.getElementById('about');
+        if (!about) return;
+        if (about.getBoundingClientRect().top < window.innerHeight - 100) {
+            countersAnimated = true;
+            document.querySelectorAll('.counter').forEach(function(el){
+                var target = parseInt(el.getAttribute('data-target'));
+                var current = 0;
+                var step = Math.ceil(target / 40);
+                var timer = setInterval(function(){
+                    current += step;
+                    if (current >= target) { current = target; clearInterval(timer); }
+                    el.textContent = current;
+                }, 35);
+            });
+        }
+    }
+
+    // ============ 环形图动画 ============
+    var ringsAnimated = false;
+    function animateRings(){
+        if (ringsAnimated) return;
+        var skillsEl = document.getElementById('skills');
+        if (!skillsEl) return;
+        if (skillsEl.getBoundingClientRect().top < window.innerHeight - 80) {
+            ringsAnimated = true;
+            var fills = document.querySelectorAll('.ring-fill');
+            var circumference = 2 * Math.PI * 52;
+            fills.forEach(function(circle, i){
+                var pct = parseInt(circle.getAttribute('data-pct')) / 100;
+                var offset = circumference * (1 - pct);
+                circle.style.strokeDasharray = circumference;
+                circle.style.strokeDashoffset = circumference;
+                setTimeout(function(){
+                    circle.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.25,0.8,0.25,1.2)';
+                    circle.style.strokeDashoffset = offset;
+                }, i * 120);
+            });
+        }
+    }
+
+    // ============ 时间轴卡片渐入 ============
+    function revealTimeline(){
+        document.querySelectorAll('.tl-item').forEach(function(item, i){
+            var rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                setTimeout(function(){ item.classList.add('visible'); }, i * 100);
+            }
+        });
+    }
+
+    // ============ 统一滚动监听 ============
+    function onScroll(){
+        updateNav();
+        updateProgress();
+        animateCounters();
+        animateRings();
+        revealTimeline();
+    }
+    window.addEventListener('scroll', onScroll, {passive: true});
+    onScroll();
+
+    // ============ 背景粒子 ============
+    var particles = [];
+    function resizeCanvas(){
+        canvas.width = window.innerWidth;
+        canvas.height = document.body.scrollHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', function(){
+        resizeCanvas();
+        initParticles();
+    });
+
+    function initParticles(){
+        particles = [];
+        var count = Math.floor((canvas.width * canvas.height) / 28000);
+        count = Math.min(count, 60);
+        for (var i = 0; i < count; i++){
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.8 + 0.4,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25,
+                o: Math.random() * 0.5 + 0.15
+            });
+        }
+    }
+    initParticles();
+
+    function drawParticles(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var isLight = body.classList.contains('light-theme');
+        var baseColor = isLight ? '200,180,140' : '200,170,110';
+        particles.forEach(function(p){
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba('+baseColor+','+p.o+')';
+            ctx.fill();
+        });
+
+        // 连线
+        for (var i=0; i<particles.length; i++){
+            for (var j=i+1; j<particles.length; j++){
+                var dx = particles[i].x - particles[j].x;
+                var dy = particles[i].y - particles[j].y;
+                var dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 150){
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = 'rgba('+baseColor+','+(0.04*(1-dist/150))+')';
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // 鼠标引力
+    document.addEventListener('mousemove', function(e){
+        particles.forEach(function(p){
+            var dx = e.clientX - p.x;
+            var dy = e.clientY - p.y;
+            var dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 180) {
+                p.vx += dx * 0.00025;
+                p.vy += dy * 0.00025;
+            }
+            p.vx *= 0.9995;
+            p.vy *= 0.9995;
+        });
+    });
+
+    // ============ 导航点击 ============
+    navDots.forEach(function(dot){
+        dot.addEventListener('click', function(){
+            var id = this.getAttribute('data-target');
+            var el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({behavior: 'smooth'});
+            }
+        });
+    });
+
+    // ============ Hero 角色轮播 ============
+    (function roleCarousel(){
+        var roles = document.querySelectorAll('.hero-role');
+        if (roles.length < 2) return;
+        var idx = 0;
+        setInterval(function(){
+            roles[idx].classList.remove('active');
+            idx = (idx + 1) % roles.length;
+            roles[idx].classList.add('active');
+        }, 2800);
+    })();
+
+    // ============ 键盘快捷键 ============
+    document.addEventListener('keydown', function(e){
+        switch(e.key.toLowerCase()){
+            case 'l': themeSwitch.click(); break;
+            case '1': document.getElementById('about')  && document.getElementById('about').scrollIntoView({behavior:'smooth'}); break;
+            case '2': document.getElementById('skills') && document.getElementById('skills').scrollIntoView({behavior:'smooth'}); break;
+            case '3': document.getElementById('exp')    && document.getElementById('exp').scrollIntoView({behavior:'smooth'}); break;
+            case '4': document.getElementById('edu')    && document.getElementById('edu').scrollIntoView({behavior:'smooth'}); break;
+            case '5': document.getElementById('contact')&& document.getElementById('contact').scrollIntoView({behavior:'smooth'}); break;
+        }
+    });
+
+    console.log('%c 张建森 · 个人简历 %c已就绪',
+        'font-size:18px;color:#c9a96e;', 'color:#888;');
+    console.log('%c⌨ 快捷键：1-5 跳转板块 | L 切换主题',
+        'color:#888;font-size:12px;');
+})();
+</script>
+
+</body>
+</html>
